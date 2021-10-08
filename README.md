@@ -1,2 +1,3 @@
-# TDA_tp2
-Trabajo práctico nro. 2.
+# TDA
+Repositorio de trabajos prácticos de la materia Teoría de Algoritmos.
+Grupo: Gato de Schrodinger
