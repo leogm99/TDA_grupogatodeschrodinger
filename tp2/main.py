@@ -1,9 +1,13 @@
 from grafo import *
+from caminos_minimos import *
 
 
 def main():
 	g = Grafo()
 	cargar_grafo(g, "prueba_parse.txt")
+	distancias_totales = camino_minimo_johnson(g)
+	print(distancias_totales)
+
 
 
 
@@ -18,8 +22,7 @@ def cargar_grafo(g: Grafo, archivo: str) -> None:
 				g.agregar_vertice(s)
 			if not g.existe_vertice(t):
 				g.agregar_vertice(t)
-			g.agregar_arista(s, t, w)
-	print(g)
+			g.agregar_arista(s, t, int(w))
 
 
 
