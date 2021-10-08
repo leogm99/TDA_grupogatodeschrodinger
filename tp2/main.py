@@ -3,7 +3,7 @@ from caminos_minimos import *
 
 
 def main():
-	g = Grafo()
+	g = Grafo(dirigido=True)
 	cargar_grafo(g, "prueba_parse.txt")
 	distancias_totales = camino_minimo_johnson(g)
 	print(distancias_totales)

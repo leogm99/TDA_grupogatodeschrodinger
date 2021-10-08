@@ -39,15 +39,15 @@ def camino_minimo_dijkstra(grafo: Grafo,origen) :
     dist[origen] = 0
     padre[origen] = None
     q = []
-    q.heappush((0,origen))
+    heapq.heappush(q,(0,origen))
 
-    while not q.esta_vacio():
-        v = q.heappop()
-        for w in grafo.obtener_adyacentes(v):
-            if dist[v] + grafo.obtener_peso(v,w) < dist[w]:
-                dist[w] = dist[v] + grafo.obtener_peso(v, w)
-                padre[w] = v
-                q.heappush((dist[w], w))
+    while len(q) != 0:
+        v = heapq.heappop(q)
+        for w in grafo.obtener_adyacentes(v[1]):
+            if dist[v[1]] + grafo.obtener_peso(v[1],w) < dist[w]:
+                dist[w] = dist[v[1]] + grafo.obtener_peso(v[1], w)
+                padre[w] = v[1]
+                heapq.heappush(q,(dist[w], w))
                 #o sino: q.actualizar(w, dist[w])
     return padre, dist 
 
