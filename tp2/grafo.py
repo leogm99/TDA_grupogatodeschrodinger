@@ -1,9 +1,10 @@
 from random import seed
 from random import randint
 
+
 class Grafo:
-    
-    def __init__ (self, dirigido = False):
+
+    def __init__(self, dirigido=False):
         '''
             Inicializa un grafo vacío.
             Por default el grafo es no dirigido.
@@ -11,8 +12,8 @@ class Grafo:
         self.vertices = {}
         self.cantidad = 0
         self.es_dirigido = dirigido
-    
-    def agregar_vertice(self,vertice):
+
+    def agregar_vertice(self, vertice):
         '''
             Agrega un vertice, si el vertice
             ya existe no lo pisa.
@@ -21,7 +22,7 @@ class Grafo:
             self.vertices[vertice] = {}
             self.cantidad += 1
 
-    def borrar_vertice(self,vertice):
+    def borrar_vertice(self, vertice):
         '''
             Si el vertice esta en el grafo lo borra.
         '''
@@ -35,13 +36,13 @@ class Grafo:
             self.cantidad -= 1
         else:
             raise ValueError("No se puede borrar un vertice inexistente")
-            
-    def agregar_arista(self,vertice1,vertice2,peso = 1):
+
+    def agregar_arista(self, vertice1, vertice2, peso=1):
         '''
             Agrega una arista entre dos vertices existentes
             del grafo, en caso contrario devuelve error.
             Si no se le pasa el peso, por default es 1
-        '''        
+        '''
         if vertice1 and vertice2 in self.vertices:
             if self.es_dirigido:
                 self.vertices[vertice1][vertice2] = peso
@@ -50,22 +51,22 @@ class Grafo:
                 self.vertices[vertice2][vertice1] = peso
         else:
             raise ValueError("No es posible agregar arista")
-    
-    def borrar_arista(self,vertice1,vertice2):
+
+    def borrar_arista(self, vertice1, vertice2):
         '''
             Si los vertices estan unidos, borra la arista
             en caso contrario devuelve error
         '''
-        if self.estan_unidos(vertice1,vertice2):
+        if self.estan_unidos(vertice1, vertice2):
             if self.es_dirigido:
-                    self.vertices[vertice1].pop(vertice2)
+                self.vertices[vertice1].pop(vertice2)
             else:
                 self.vertices[vertice1].pop(vertice2)
                 self.vertices[vertice2].pop(vertice1)
-        else: 
+        else:
             raise ValueError("No es posible borrar la arista")
-    
-    def estan_unidos(self,vertice1,vertice2):
+
+    def estan_unidos(self, vertice1, vertice2):
         '''
             Verifica si dos vertices estan unidos.
             Devuelve True si lo estan o false en caso 
@@ -84,16 +85,17 @@ class Grafo:
                 return True
         return False
 
-    def obtener_peso(self,vertice1,vertice2):
+    def obtener_peso(self, vertice1, vertice2):
         '''
             Devuelve el peso entre dos vertices
             unidos o 0 en caso que no lo esten.
         '''
-        if self.estan_unidos(vertice1,vertice2):
+        if self.estan_unidos(vertice1, vertice2):
             return self.vertices[vertice1][vertice2]
-        else: return 0
-    
-    def obtener_adyacentes(self,vertice):
+        else:
+            return 0
+
+    def obtener_adyacentes(self, vertice):
         '''
             Devuelve los adyacentes de un vertice
             o error en caso que el vertice no se 
@@ -106,8 +108,8 @@ class Grafo:
         else:
             raise ValueError("Vertice inexistente, no se puede obtener las aristas")
         return adyacentes
-    
-    def existe_vertice(self,vertice):
+
+    def existe_vertice(self, vertice):
         '''
             Devuelve True en caso que el vertice
             se encuentre en el grafo, False en caso 
@@ -115,8 +117,9 @@ class Grafo:
         '''
         if vertice in self.vertices:
             return True
-        else: return False
-    
+        else:
+            return False
+
     def obtener_vertices(self):
         '''
             Obtiene todos los vertices
@@ -135,14 +138,14 @@ class Grafo:
         '''
 
         if self.cantidad == 0: return None
-        
+
         seed()
         i = randint(0, self.cantidad - 1)
         vertices = list(self.vertices)
 
         return vertices[i]
-    
-    def obtener_entradas(self,vertice):
+
+    def obtener_entradas(self, vertice):
         '''
             Recibe el vertice al cual se le quiere
             calcular las entradas. 
@@ -162,15 +165,15 @@ class Grafo:
                     cant += 1
 
         return entradas
-    
+
     def cantidad_vertices(self):
         return self.cantidad
-        
+
     def __repr__(self):
         return self.vertices
 
     def __str__(self):
         return str(self.vertices)
-    
+
     def __len__(self):
         return self.cantidad
