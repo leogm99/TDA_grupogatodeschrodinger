@@ -76,7 +76,14 @@ def camino_minimo_johnson(grafo: Grafo):
 
 
 def obtener_vertice_ideal(diccionario):
-    ...
+    distancias = {}
+    for dep,dic in diccionario.items():
+        distancias[dep] = 0
+        for k,v in dic.items():
+            distancias[dep] = distancias[dep] + v
+   
+    vertice_ideal = min(distancias.items(), key=lambda x: x[1])
+    return vertice_ideal[0]
 
 
 '''
