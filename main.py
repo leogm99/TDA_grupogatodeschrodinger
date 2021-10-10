@@ -9,7 +9,7 @@ def main():
 	distancias_totales = camino_minimo_johnson(g)
 	print(distancias_totales)
 	vertice = obtener_vertice_ideal(distancias_totales)
-	print("El vertice ideal es "+str(vertice))
+	print("El vertice ideal es " + str(vertice))
 
 
 def cargar_grafo(g: Grafo, archivo: str) -> None:
