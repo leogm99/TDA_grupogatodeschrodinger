@@ -26,7 +26,6 @@ def cargar_grafo(g: Grafo, archivo: str) -> None:
 
 def matriz_caminos_minimos(distancias_totales):
 	df = pd.DataFrame(distancias_totales)
-	print(distancias_totales)
 	print(df.T)
 			
 
