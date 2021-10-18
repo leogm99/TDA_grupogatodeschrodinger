@@ -1,10 +1,25 @@
 from grafo import *
 from caminos_minimos import *
 import pandas as pd
+import argparse
+
 
 def main():
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-f', '--file', dest='file', help='Path al archivo de ciudades', required=True)
+	args = parser.parse_args()
+
 	g = Grafo(True)
-	cargar_grafo(g, "prueba_parse.txt")
+	try:
+		cargar_grafo(g, args.file)
+	except FileNotFoundError:
+		print("Archivo invalido")
+		return -1
+	except BaseException as err:
+		print("{}".format(err))
+		return -1
+
+
 	distancias_totales = camino_minimo_johnson(g)
 	matriz_caminos_minimos(distancias_totales)
 	vertice = obtener_vertice_ideal(distancias_totales)
