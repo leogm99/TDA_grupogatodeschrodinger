@@ -85,19 +85,3 @@ def obtener_vertice_ideal(diccionario):
     vertice_ideal = min(distancias.items(), key=lambda x: x[1])
     return vertice_ideal[0]
 
-
-'''
-
-    a   b   c   d   ...
-a   0   4   3   7
-...
-
-{
-    a:{a=0,b=4,c=3,d=7,...}
-    b:{}
-    c:{}
-    ...
-}
-
-
-'''

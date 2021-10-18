@@ -1,15 +1,14 @@
 from grafo import *
 from caminos_minimos import *
-
+import pandas as pd
 
 def main():
 	g = Grafo(True)
 	cargar_grafo(g, "prueba_parse.txt")
-
 	distancias_totales = camino_minimo_johnson(g)
-	print(distancias_totales)
+	matriz_caminos_minimos(distancias_totales)
 	vertice = obtener_vertice_ideal(distancias_totales)
-	print("El vertice ideal es "+str(vertice))
+	print("El vertice ideal es " + str(vertice))
 
 
 def cargar_grafo(g: Grafo, archivo: str) -> None:
@@ -24,6 +23,13 @@ def cargar_grafo(g: Grafo, archivo: str) -> None:
 			if not g.existe_vertice(t):
 				g.agregar_vertice(t)
 			g.agregar_arista(s, t, int(w))
+
+def matriz_caminos_minimos(distancias_totales):
+	df = pd.DataFrame(distancias_totales)
+	print(distancias_totales)
+	print(df.T)
+			
+
 
 
 if __name__ == '__main__':
