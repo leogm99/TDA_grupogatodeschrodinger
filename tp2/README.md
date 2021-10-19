@@ -19,4 +19,4 @@ B,C,8
 
 ### Ejemplo de invocación:
 
-python3 minimizando_costos.py -f *Path al archivo de ciudades* --file *nombre_del_archivo.txt* 
+python3 minimizando_costos.py -f *path/to/<nombre_archivo>.txt*

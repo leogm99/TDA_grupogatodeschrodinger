@@ -6,7 +6,7 @@ import argparse
 
 def main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument('-f', '--file', dest='file', help='Path al archivo de ciudades', required=True)
+	parser.add_argument('-f', '--file', dest='file', help='path/to/<nombre_archivo.txt>', required=True)
 	args = parser.parse_args()
 
 	g = Grafo(True)
