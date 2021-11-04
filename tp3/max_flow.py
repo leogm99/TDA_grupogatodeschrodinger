@@ -4,8 +4,28 @@ from collections import deque
 
 
 # depth-first search
-def dfs(graph: Grafo, vertex, visited):
-    pass
+# devuelve todas las aristas que van desde un vertice alcanzable a uno no alcanzable en el grafo residual
+# estas aristas son las de corte minimo
+def modified_dfs(graph: Grafo, vertex):
+    aux = [False for _ in graph.vertices.keys()]
+    visited = dict(zip(graph.vertices.keys(), aux))
+    visited_stack = [vertex]
+    visited[vertex] = True
+    non_reachable_edges = []
+
+    # lista con elementos es truthy! sino es falsy
+    while visited_stack:
+        v = visited_stack.pop()
+        for v_neighbour in graph.obtener_adyacentes(v):
+            if not graph.obtener_peso(v, v_neighbour):
+                non_reachable_edges.append((v, v_neighbour))
+            if not visited[v_neighbour]:
+                weight = graph.obtener_peso(v, v_neighbour)
+                if weight != 0:
+                    visited[v_neighbour] = True
+                    visited_stack.append(v_neighbour)
+
+    return non_reachable_edges
 
 
 # path de aumento utilizando BFS
@@ -17,7 +37,7 @@ def augmenting_path(graph: Grafo, vertex_source, vertex_sink):
     visited[vertex_source] = True
     parent = {}
 
-    while len(visited_q) != 0:
+    while visited_q:
         u = visited_q.popleft()
 
         for v_neighbour in graph.obtener_adyacentes(u):
